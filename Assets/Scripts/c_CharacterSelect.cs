@@ -7,53 +7,52 @@ using UnityEngine.UI;
 public class c_CharacterSelect : MonoBehaviour
 {
     public InputField playerName;
-    public GameObject submitCharPanel, startGamePanel, nameBlockHeader, nameBlock, startGameButton;
-    public Image characterImage;
+    public GameObject[] playerQuestions;
+    public GameObject submitCharPanel, submitPlayerInfoButton, startGamePanel,
+        nameBlockHeader, nameBlock, startGameButton, questionPanelParent;
 
     public g_GameStart gameStart;
 
-    private int previousNumPlayers = 1, currentCharacterIndex = 0;
+    private List<Text> playerAnswerTexts;
+
+    private int previousNumPlayers = 1;
     private bool[] hasBeenAdded = new bool[12];
 
-    public void SubmitPlayerInfo()
+    public void Start()
     {
-        if (!playerName.text.Equals(""))
+        playerAnswerTexts = new List<Text>();
+
+        for (int i = 0; i < 4; i++)
         {
-            PhotonNetwork.playerName = playerName.text;
-            submitCharPanel.SetActive(false);
-            startGamePanel.SetActive(true);
-
-            ExitGames.Client.Photon.Hashtable playerInfo = new ExitGames.Client.Photon.Hashtable();
-            playerInfo.Add("CharacterArtNum", currentCharacterIndex);
-            PhotonNetwork.player.SetCustomProperties(playerInfo);
-
-            if (PhotonNetwork.player.ID == 2)
-            {
-                Debug.Log("[PHOTON] Player is first to join");
-                startGameButton.SetActive(true);
-            }
-            else
-            {
-                Debug.Log("[PHOTON] Player is not first to join");
-                startGameButton.SetActive(false);
-            }
+            GameObject newQuestion = Instantiate(playerQuestions[0], questionPanelParent.transform);
+            Text answerText = newQuestion.transform.GetChild(1).transform.GetChild(1).gameObject.GetComponent<Text>();
+            playerAnswerTexts.Add(answerText);
         }
     }
 
-    public void CharacterButtonPressed(int direction)
+    public void SubmitPlayerInfo()
     {
-        currentCharacterIndex += direction;
+        ExitGames.Client.Photon.Hashtable playerInfo = new ExitGames.Client.Photon.Hashtable();
+        playerInfo.Add("PlayerAnswer1", playerAnswerTexts[0].text);
+        playerInfo.Add("PlayerAnswer2", playerAnswerTexts[1].text);
+        playerInfo.Add("PlayerAnswer3", playerAnswerTexts[2].text);
+        playerInfo.Add("PlayerAnswer4", playerAnswerTexts[3].text);
+        PhotonNetwork.player.SetCustomProperties(playerInfo);
 
-        if (currentCharacterIndex < 0)
-        {
-            currentCharacterIndex = GetComponent<c_PossibleCharacterInfo>().characters.Length - 1;
-        }
-        else if (currentCharacterIndex > GetComponent<c_PossibleCharacterInfo>().characters.Length - 1)
-        {
-            currentCharacterIndex = 0;
-        }
+        PhotonNetwork.playerName = playerName.text;
+        submitCharPanel.SetActive(false);
+        startGamePanel.SetActive(true);
 
-        characterImage.sprite = GetComponent<c_PossibleCharacterInfo>().characters[currentCharacterIndex];
+        if (PhotonNetwork.player.ID == 2)
+        {
+            Debug.Log("[PHOTON] Player is first to join");
+            startGameButton.SetActive(true);
+        }
+        else
+        {
+            Debug.Log("[PHOTON] Player is not first to join");
+            startGameButton.SetActive(false);
+        }
     }
 
     public void StartGame()
@@ -76,16 +75,21 @@ public class c_CharacterSelect : MonoBehaviour
                         hasBeenAdded[playerNum] = true;
                         GameObject newNameBlock = Instantiate(nameBlock, nameBlockHeader.transform);
                         s_global.allPlayers.Add(PhotonNetwork.playerList[i]);
-                        int charIndex = int.Parse(PhotonNetwork.playerList[i].CustomProperties["CharacterArtNum"].ToString());
 
                         newNameBlock.transform.GetChild(0).GetComponent<Text>().text = PhotonNetwork.playerList[i].NickName;
-                        newNameBlock.transform.GetChild(1).GetComponent<Text>().text = GetComponent<c_PossibleCharacterInfo>().characterSubs[charIndex];
-                        newNameBlock.transform.GetChild(2).GetComponent<Image>().sprite = GetComponent<c_PossibleCharacterInfo>().characterHeadshot[charIndex];
+                        newNameBlock.transform.GetChild(1).GetComponent<Image>().sprite = GetComponent<c_PossibleCharacterInfo>().characterPictures[0];
                         previousNumPlayers = PhotonNetwork.room.PlayerCount;
                     }
                 }
             }
+
             startGameButton.GetComponent<Button>().interactable = (PhotonNetwork.room.PlayerCount - 1 == s_global.allPlayers.Count);
+        }
+        else
+        {
+            submitPlayerInfoButton.GetComponent<Button>().interactable = !playerName.text.Equals("") &&
+                !(playerAnswerTexts[0].text.Equals("") || playerAnswerTexts[1].text.Equals("") ||
+                playerAnswerTexts[2].text.Equals("") || playerAnswerTexts[3].text.Equals(""));
         }
     }
 }

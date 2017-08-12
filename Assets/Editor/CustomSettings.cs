@@ -11,11 +11,4 @@ public class CustomSettings : EditorWindow
 
     [MenuItem("Custom/Reset Playerprefs")]
     public static void DeletePlayerPrefs() { PlayerPrefs.DeleteAll(); }
-
-    [MenuItem("Custom/PlayCorrectScene _%#z")]
-    public static void RunMainScene()
-    {
-        EditorSceneManager.OpenScene("Assets/Scenes/ControllerCharacterSelection.unity");
-        EditorApplication.isPlaying = true;
-    }
 }

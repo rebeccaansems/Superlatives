@@ -46,7 +46,6 @@ public class c_JoinGame : MonoBehaviour
 
                 SceneManager.LoadScene("Controller01_CharacterSelect");
                 break;
-
             }
         }
 

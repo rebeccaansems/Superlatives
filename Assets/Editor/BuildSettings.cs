@@ -11,8 +11,8 @@ public class BuildSettings : EditorWindow
     public string[] options = new string[] { "Controller", "Server" };
     public int index = 0;
 
-    private static string buildPath = "C:/Users/User/Desktop/Werewolf Builds";
-    private static string scenePath = "C:/Users/User/Documents/GitHub/Werewolf/Assets/Scenes";
+    private static string buildPath = "C:/Users/User/Desktop/Superlatives Builds";
+    private static string scenePath = "C:/Users/User/Documents/GitHub/Superlatives/Assets/Scenes";
 
     [MenuItem("Custom/Windows Build")]
     static void Init()
@@ -51,7 +51,7 @@ public class BuildSettings : EditorWindow
         {
             if (f.FullName.Contains(type))
             {
-                levels.Add(f.FullName.Replace("C:/Users/User/Documents/GitHub/Werewolf/", ""));
+                levels.Add(f.FullName.Replace("C:/Users/User/Documents/GitHub/Superlatives/", ""));
             }
         }
 

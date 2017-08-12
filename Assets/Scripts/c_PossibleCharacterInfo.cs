@@ -5,6 +5,5 @@ using UnityEngine.UI;
 
 public class c_PossibleCharacterInfo : MonoBehaviour
 {
-    public Sprite[] characters, characterHeadshot;
-    public string[] characterSubs;
+    public Sprite[] characterPictures;
 }
