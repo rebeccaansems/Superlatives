@@ -26,12 +26,10 @@ public class c_CharacterSelect : MonoBehaviour
 
     private IEnumerator SetupQuestions()
     {
-        Debug.Log("[GAME] 213");
         while (gc_SuperlativeQuestions.round1Questions == null)
         {
             yield return null;
         }
-        Debug.Log("[GAME] 325325");
 
         for (int i = 0; i < 4; i++)
         {
