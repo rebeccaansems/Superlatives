@@ -46,4 +46,5 @@ MonoBehaviour:
   - SendVote
   - GameHasStarted
   - VibrateFlash
+  - SuperlativeQuestionsRecieved
   DisableAutoOpenWizard: 1

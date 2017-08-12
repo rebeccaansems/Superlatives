@@ -21,10 +21,25 @@ public class c_CharacterSelect : MonoBehaviour
     public void Start()
     {
         playerAnswerTexts = new List<Text>();
+        StartCoroutine(SetupQuestions());
+    }
+
+    private IEnumerator SetupQuestions()
+    {
+        Debug.Log("[GAME] 213");
+        while (gc_SuperlativeQuestions.round1Questions == null)
+        {
+            yield return null;
+        }
+        Debug.Log("[GAME] 325325");
 
         for (int i = 0; i < 4; i++)
         {
             GameObject newQuestion = Instantiate(playerQuestions[0], questionPanelParent.transform);
+
+            Text questionText = newQuestion.transform.GetChild(0).transform.GetComponent<Text>();
+            questionText.text = gc_SuperlativeQuestions.round1Questions[i];
+
             Text answerText = newQuestion.transform.GetChild(1).transform.GetChild(1).gameObject.GetComponent<Text>();
             playerAnswerTexts.Add(answerText);
         }

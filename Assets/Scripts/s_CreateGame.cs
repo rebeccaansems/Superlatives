@@ -8,8 +8,8 @@ public class s_CreateGame : MonoBehaviour
 {
     public const string VERSION = "0.1";
 
-
     public Text roomCodeText;
+    public g_SelectSuperlativeQuestions selectSuperlativeQuestions;
 
     public string roomCode { get; private set; }
 
@@ -79,6 +79,8 @@ public class s_CreateGame : MonoBehaviour
                     playerInfo.Add("JoinNumber", i);
                     PhotonNetwork.otherPlayers[i].SetCustomProperties(playerInfo);
                     Debug.Log("[PHOTON] Added new player with join ID: " + PhotonNetwork.otherPlayers[i].CustomProperties["JoinNumber"].ToString());
+
+                    selectSuperlativeQuestions.SendSuperlativeQuestion("yo");
                 }
             }
         }
