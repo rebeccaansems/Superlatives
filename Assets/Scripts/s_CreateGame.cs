@@ -39,7 +39,6 @@ public class s_CreateGame : MonoBehaviour
         //word += possibleLetters[Random.Range(0, possibleLetters.Length)];
         //word += possibleLetters[Random.Range(0, possibleLetters.Length)];
         //word += possibleLetters[Random.Range(0, possibleLetters.Length)];
-
         return word;
     }
 
