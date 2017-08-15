@@ -8,16 +8,22 @@ public class s_CreateGame : MonoBehaviour
 {
     public const string VERSION = "0.1";
 
+    public TextAsset json;
     public Text roomCodeText;
     public g_SelectSuperlativeQuestions selectSuperlativeQuestions;
 
     public string roomCode { get; private set; }
 
+    private SuperlativeQuestionsList SQL;
+
     private bool playerJoinedRoom = true;
     private int previousNumberPlayers = 1;
+    private int[] rankingQuestions = new int[4];
 
     void Start()
     {
+        SQL = new SuperlativeQuestionsList(json.text);
+
         roomCode = getRandomWord();
         roomCodeText.text = roomCode;
 
@@ -79,9 +85,17 @@ public class s_CreateGame : MonoBehaviour
                     PhotonNetwork.otherPlayers[i].SetCustomProperties(playerInfo);
                     Debug.Log("[PHOTON] Added new player with join ID: " + PhotonNetwork.otherPlayers[i].CustomProperties["JoinNumber"].ToString());
 
-                    selectSuperlativeQuestions.SendSuperlativeQuestion("yo");
+                    SendQuestions();
                 }
             }
         }
+    }
+
+    private void SendQuestions()
+    {
+        selectSuperlativeQuestions.SendSuperlativeQuestion("yo");
+        selectSuperlativeQuestions.SendSuperlativeQuestion("yo");
+        selectSuperlativeQuestions.SendSuperlativeQuestion("yo");
+        selectSuperlativeQuestions.SendSuperlativeQuestion("yo");
     }
 }
