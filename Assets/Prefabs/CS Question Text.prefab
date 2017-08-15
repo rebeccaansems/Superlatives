@@ -190,7 +190,8 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: This is a question with a text answer?
+  m_Text: This is a question with a text answer? This is a question with a text answer?This
+    is a question with a text answer?
 --- !u!114 &114374926755445948
 MonoBehaviour:
   m_ObjectHideFlags: 1

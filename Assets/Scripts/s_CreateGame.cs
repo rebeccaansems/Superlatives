@@ -93,9 +93,11 @@ public class s_CreateGame : MonoBehaviour
 
     private void SendQuestions()
     {
-        selectSuperlativeQuestions.SendSuperlativeQuestion("yo");
-        selectSuperlativeQuestions.SendSuperlativeQuestion("yo");
-        selectSuperlativeQuestions.SendSuperlativeQuestion("yo");
-        selectSuperlativeQuestions.SendSuperlativeQuestion("yo");
+        string[] questionsToSend = new string[4]
+            { SQL.rankingQuestions[Random.Range(0, SQL.rankingQuestions.Count-1)].superlativeQuestion,
+            SQL.rankingQuestions[Random.Range(0, SQL.rankingQuestions.Count-1)].superlativeQuestion,
+            SQL.rankingQuestions[Random.Range(0, SQL.rankingQuestions.Count-1)].superlativeQuestion,
+            SQL.rankingQuestions[Random.Range(0, SQL.rankingQuestions.Count-1)].superlativeQuestion };
+        selectSuperlativeQuestions.SendSuperlativeQuestion(questionsToSend);
     }
 }
