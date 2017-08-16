@@ -12,8 +12,8 @@ EditorBuildSettings:
     path: Assets/Scenes/Controller01_CharacterSelect.unity
     guid: 68cd5fef095f0d8428d1d4011ca4af64
   - enabled: 1
-    path: Assets/Scenes/Controller02_SendVibrate.unity
-    guid: d2de9966e6e715647bab9ebce38c99ca
+    path: Assets/Scenes/Controller02_RankingRound.unity
+    guid: b3a869cc88c981443b521dc0ade66e9d
   - enabled: 1
     path: Assets/Scenes/Server00_JoinGame.unity
     guid: 8bf183dcc71bc9443b1dadf7a99115ca

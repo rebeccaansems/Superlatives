@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class g_GameStart : Photon.MonoBehaviour
 {
@@ -8,15 +9,19 @@ public class g_GameStart : Photon.MonoBehaviour
 
     public void SendGameHasStarted()
     {
-        this.GetComponent<PhotonView>().RPC("GameHasStarted", PhotonNetwork.masterClient);
+        this.GetComponent<PhotonView>().RPC("GameHasStarted", PhotonTargets.Others);
     }
 
     [PunRPC]
     public void GameHasStarted()
     {
-        if(server != null)
+        if (server != null)
         {
             server.GameHasStarted();
+        }
+        else
+        {
+            SceneManager.LoadScene("Controller02_RankingRound");
         }
     }
 }

@@ -26,7 +26,7 @@ public class c_CharacterSelect : MonoBehaviour
 
     private IEnumerator SetupQuestions()
     {
-        while (gc_SuperlativeQuestions.round1Questions == null)
+        while (c_SuperlativeQuestions.rankingRoundQuestions == null)
         {
             yield return null;
         }
@@ -36,7 +36,7 @@ public class c_CharacterSelect : MonoBehaviour
             GameObject newQuestion = Instantiate(playerQuestions[0], questionPanelParent.transform);
 
             Text questionText = newQuestion.transform.GetChild(0).transform.GetComponent<Text>();
-            questionText.text = gc_SuperlativeQuestions.round1Questions[i];
+            questionText.text = c_SuperlativeQuestions.rankingRoundQuestions[i];
 
             Text answerText = newQuestion.transform.GetChild(1).transform.GetChild(1).gameObject.GetComponent<Text>();
             playerAnswerTexts.Add(answerText);
@@ -71,7 +71,7 @@ public class c_CharacterSelect : MonoBehaviour
     public void StartGame()
     {
         gameStart.SendGameHasStarted();
-        SceneManager.LoadScene("Controller02_SendVibrate");
+        SceneManager.LoadScene("Controller02_RankingRound");
     }
 
     private void Update()
