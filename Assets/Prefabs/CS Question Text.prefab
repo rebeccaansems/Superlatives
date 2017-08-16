@@ -39,6 +39,7 @@ GameObject:
   - component: {fileID: 224400151590863718}
   - component: {fileID: 222813802199401656}
   - component: {fileID: 114209540839935174}
+  - component: {fileID: 114098681781070800}
   m_Layer: 5
   m_Name: Question Text
   m_TagString: Untagged
@@ -131,6 +132,18 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: 
+--- !u!114 &114098681781070800
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1320762827527192}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 11785365dd2d85e48937687278d68894, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  incrementSize: 20
 --- !u!114 &114158620966328680
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -179,10 +192,10 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 14
+    m_FontSize: 60
     m_FontStyle: 0
-    m_BestFit: 1
-    m_MinSize: 10
+    m_BestFit: 0
+    m_MinSize: 4
     m_MaxSize: 80
     m_Alignment: 0
     m_AlignByGeometry: 0
@@ -190,8 +203,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: This is a question with a text answer? This is a question with a text answer?This
-    is a question with a text answer?
+  m_Text: This is a text with a text answer? It's great
 --- !u!114 &114374926755445948
 MonoBehaviour:
   m_ObjectHideFlags: 1
