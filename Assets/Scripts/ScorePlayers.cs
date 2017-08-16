@@ -16,10 +16,9 @@ public class ScorePlayers : MonoBehaviour
         }
     }
 
-    private List<Pair<string, int>> pairList = new List<ScorePlayers.Pair<string, int>>();
-
-    public void SortRankOrder(int questionNumber)
+    private List<Pair<string, int>> SortRankOrder(int questionNumber)
     {
+        List<Pair<string, int>> pairList = new List<Pair<string, int>>();
         for (int i = 0; i < Global.allPlayers.Count; i++)
         {
             pairList.Add(new Pair<string, int>(PhotonNetwork.otherPlayers[i].NickName,
@@ -27,9 +26,22 @@ public class ScorePlayers : MonoBehaviour
         }
 
         pairList = pairList.OrderBy(x => x.Second).ToList();
+
+        return pairList;
     }
 
-    public void ScorePlayerRanking(string[] playerRankings)
+    public int ScorePlayerRanking(int questionNumber, string[] playerRankings)
     {
+        List<Pair<string, int>> pairList = SortRankOrder(questionNumber);
+        int score = 0;
+
+        for (int i = 0; i < Global.allPlayers.Count; i++)
+        {
+            if (pairList[i].First.Equals(playerRankings[i]))
+            {
+                score++;
+            }
+        }
+        return score;
     }
 }

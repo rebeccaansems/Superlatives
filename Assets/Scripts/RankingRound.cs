@@ -34,11 +34,12 @@ public class RankingRound : MonoBehaviour
     {
         List<string> playerRankingOrder = new List<string>();
 
-        for (int i = 0; i < Global.allPlayers.Count - 2; i++)
+        for (int i = 0; i < Global.allPlayers.Count/2; i++)
         {
             playerRankingOrder.Add(nameBlockHeader.transform.GetChild(i).GetChild(0).GetComponent<Text>().text);
         }
 
-        submitRanking.SendRankingNames(playerRankingOrder.ToArray());
+        string[] playerRanking = playerRankingOrder.ToArray();
+        submitRanking.SendRankingNames(playerRanking);
     }
 }

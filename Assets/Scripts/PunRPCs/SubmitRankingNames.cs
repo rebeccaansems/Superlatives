@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class SubmitRankingNames : Photon.MonoBehaviour
 {
-    public bool isServer;
+    public MainGame server;
 
     public void SendRankingNames(string[] data)
     {
@@ -14,9 +14,10 @@ public class SubmitRankingNames : Photon.MonoBehaviour
     [PunRPC]
     public void RankingNamesRecieved(string[] data)
     {
-        if (isServer)
+        if (server != null)
         {
             Debug.Log("[PHOTON] Recieved ranking names from player");
+            server.ScorePlayers(data);
         }
     }
 }
