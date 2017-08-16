@@ -79,3 +79,10 @@ $RECYCLE.BIN/
 
 # Windows shortcuts
 *.lnk
+
+#Ignore dlls
+!/*.dll
+!/*/*.dll
+!/*/*/*.dll
+!/*/*/*/*.dll
+!/*/*/*/*/*.dll
