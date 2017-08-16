@@ -13,8 +13,8 @@ using UnityEngine.UI;
 
 public class UIElementDragger : MonoBehaviour
 {
-
     public const string DRAGGABLE_TAG = "Draggable";
+    public GameObject nameBlockHeader;
     public VerticalLayoutGroup vert;
 
     private bool dragging = false;
@@ -24,13 +24,20 @@ public class UIElementDragger : MonoBehaviour
     private Transform objectToDrag;
     private Image objectToDragImage;
 
+    private List<string> playerOrder = new List<string>();
+
     List<RaycastResult> hitObjects = new List<RaycastResult>();
 
-    #region Monobehaviour API
-
-    void Update()
+    private void Start()
     {
+        for (int i = 0; i < Global.allPlayers.Count; i++)
+        {
+            playerOrder.Add(nameBlockHeader.transform.GetChild(i).name);
+        }
+    }
 
+    private void Update()
+    {
         if (Input.GetMouseButtonDown(0))
         {
             objectToDrag = GetDraggableTransformUnderMouse();
@@ -64,6 +71,10 @@ public class UIElementDragger : MonoBehaviour
                 {
                     objectToDrag.position = objectToReplace.position;
                     objectToReplace.position = originalPosition;
+
+                    int replaceNumber = playerOrder.IndexOf(objectToReplace.name);
+                    playerOrder[playerOrder.IndexOf(objectToDrag.name)] = objectToReplace.name;
+                    playerOrder[replaceNumber] = objectToDrag.name;
                 }
                 else
                 {
@@ -75,7 +86,6 @@ public class UIElementDragger : MonoBehaviour
             }
 
             dragging = false;
-            //vert.enabled = true;
         }
     }
 
@@ -105,5 +115,8 @@ public class UIElementDragger : MonoBehaviour
         return null;
     }
 
-    #endregion
+    public List<string> GetPlayerListOrder()
+    {
+        return playerOrder;
+    }
 }

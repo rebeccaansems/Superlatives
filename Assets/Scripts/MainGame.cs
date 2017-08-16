@@ -5,7 +5,6 @@ using UnityEngine.UI;
 
 public class MainGame : MonoBehaviour
 {
-
     int rankingRoundNumber = 1;
     int playerScore;
     public Text text;

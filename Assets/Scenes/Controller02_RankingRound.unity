@@ -645,6 +645,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 327aa7a4aff61514bae477d803f3f1bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  nameBlockHeader: {fileID: 1810670615}
   vert: {fileID: 1810670617}
 --- !u!1 &1558446599
 GameObject:
@@ -928,6 +929,7 @@ MonoBehaviour:
   nameBlockHeader: {fileID: 1810670615}
   nameBlock: {fileID: 1299526138236352, guid: c1a3dff4411e7cf4a8fccefa92466d2d, type: 2}
   submitRanking: {fileID: 1057982033}
+  uiElement: {fileID: 1545719495}
 --- !u!4 &2004860522
 Transform:
   m_ObjectHideFlags: 0
