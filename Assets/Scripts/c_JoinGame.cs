@@ -16,7 +16,8 @@ public class c_JoinGame : MonoBehaviour
 
     void Start()
     {
-        PhotonNetwork.autoJoinLobby = true;
+        TouchScreenKeyboard.hideInput = true;
+        PhotonNetwork.autoJoinLobby = true; 
 
         if (!PhotonNetwork.connected)
         {
