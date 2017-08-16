@@ -45,6 +45,7 @@ public class s_CreateGame : MonoBehaviour
         //word += possibleLetters[Random.Range(0, possibleLetters.Length)];
         //word += possibleLetters[Random.Range(0, possibleLetters.Length)];
         //word += possibleLetters[Random.Range(0, possibleLetters.Length)];
+        
         return word;
     }
 
@@ -93,11 +94,21 @@ public class s_CreateGame : MonoBehaviour
 
     private void SendQuestions()
     {
-        string[] questionsToSend = new string[4]
-            { SQL.rankingQuestions[Random.Range(0, SQL.rankingQuestions.Count-1)].superlativeQuestion,
-            SQL.rankingQuestions[Random.Range(0, SQL.rankingQuestions.Count-1)].superlativeQuestion,
-            SQL.rankingQuestions[Random.Range(0, SQL.rankingQuestions.Count-1)].superlativeQuestion,
-            SQL.rankingQuestions[Random.Range(0, SQL.rankingQuestions.Count-1)].superlativeQuestion };
-        selectSuperlativeQuestions.SendSuperlativeQuestion(questionsToSend);
+        List<int> questionLocations = new List<int>();
+        int currentNum = -1;
+        while (questionLocations.Count < 4)
+        {
+            currentNum = Random.Range(0, SQL.rankingQuestions.Count);
+            if (!questionLocations.Contains(currentNum))
+            {
+                questionLocations.Add(currentNum);
+            }
+        }
+
+        selectSuperlativeQuestions.SendSuperlativeQuestion(new string[4]
+            { SQL.rankingQuestions[questionLocations[0]].superlativeQuestion,
+            SQL.rankingQuestions[questionLocations[1]].superlativeQuestion,
+            SQL.rankingQuestions[questionLocations[2]].superlativeQuestion,
+            SQL.rankingQuestions[questionLocations[3]].superlativeQuestion });
     }
 }
