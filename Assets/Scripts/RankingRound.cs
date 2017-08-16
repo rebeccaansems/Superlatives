@@ -7,6 +7,7 @@ public class RankingRound : MonoBehaviour
 {
     public Text currentQuestion;
     public GameObject nameBlockHeader, nameBlock;
+    public SubmitRankingNames submitRanking;
 
     private void Start()
     {
@@ -36,8 +37,8 @@ public class RankingRound : MonoBehaviour
         for (int i = 0; i < Global.allPlayers.Count - 2; i++)
         {
             playerRankingOrder.Add(nameBlockHeader.transform.GetChild(i).GetChild(0).GetComponent<Text>().text);
-
-            Debug.Log(playerRankingOrder[i]);
         }
+
+        submitRanking.SendRankingNames(playerRankingOrder.ToArray());
     }
 }

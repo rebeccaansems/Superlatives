@@ -561,6 +561,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1888900270}
   - component: {fileID: 1888900269}
+  - component: {fileID: 1888900268}
   m_Layer: 0
   m_Name: Room SR
   m_TagString: Untagged
@@ -568,6 +569,18 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &1888900268
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1888900267}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b79c07ebf40e3f42a652af3b5bfd4a4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isServer: 1
 --- !u!114 &1888900269
 MonoBehaviour:
   m_ObjectHideFlags: 0

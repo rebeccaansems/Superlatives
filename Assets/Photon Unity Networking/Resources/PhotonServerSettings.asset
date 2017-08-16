@@ -47,4 +47,5 @@ MonoBehaviour:
   - GameHasStarted
   - VibrateFlash
   - SuperlativeQuestionsRecieved
+  - RankingNamesRecieved
   DisableAutoOpenWizard: 1
