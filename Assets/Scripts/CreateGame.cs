@@ -52,6 +52,8 @@ public class CreateGame : MonoBehaviour
     public void GameHasStarted()
     {
         Debug.Log("[PHOTON] Game has started");
+        this.GetComponent<ScorePlayers>().SortRankOrder(1);
+
         PhotonNetwork.room.IsOpen = false;
         SceneManager.LoadScene("Server01_GameStarted");
     }
