@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class c_PossibleCharacterInfo : MonoBehaviour
+public class PossibleCharacterInfo : MonoBehaviour
 {
     public Sprite[] characterPictures;
 }

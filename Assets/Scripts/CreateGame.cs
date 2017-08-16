@@ -4,13 +4,13 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class s_CreateGame : MonoBehaviour
+public class CreateGame : MonoBehaviour
 {
     public const string VERSION = "0.1";
 
     public TextAsset json;
     public Text roomCodeText;
-    public g_SelectSuperlativeQuestions selectSuperlativeQuestions;
+    public SelectSuperlativeQuestions selectSuperlativeQuestions;
 
     public string roomCode { get; private set; }
 
@@ -77,9 +77,9 @@ public class s_CreateGame : MonoBehaviour
             previousNumberPlayers = PhotonNetwork.room.PlayerCount;
             for (int i = 0; i < PhotonNetwork.otherPlayers.Length; i++)
             {
-                if (!s_global.allPlayers.Contains(PhotonNetwork.otherPlayers[i]))
+                if (!Global.allPlayers.Contains(PhotonNetwork.otherPlayers[i]))
                 {
-                    s_global.allPlayers.Add(PhotonNetwork.otherPlayers[i]);
+                    Global.allPlayers.Add(PhotonNetwork.otherPlayers[i]);
 
                     ExitGames.Client.Photon.Hashtable playerInfo = new ExitGames.Client.Photon.Hashtable();
                     playerInfo.Add("JoinNumber", i);

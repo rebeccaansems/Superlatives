@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-public class c_JoinGame : MonoBehaviour
+public class JoinGame : MonoBehaviour
 {
     public const string VERSION = "0.1";
 
@@ -25,7 +25,7 @@ public class c_JoinGame : MonoBehaviour
         }
     }
 
-    public void JoinGame()
+    public void BeginJoinGame()
     {
         joinRoomCode = roomCodeInput.text.ToUpper();
 

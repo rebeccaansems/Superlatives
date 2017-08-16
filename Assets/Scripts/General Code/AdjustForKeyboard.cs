@@ -12,6 +12,7 @@ public class AdjustForKeyboard : MonoBehaviour
         oriPos = this.transform.position;
     }
 
+#if UNITY_IOS
     private void Update()
     {
         if (TouchScreenKeyboard.visible && keyboardWasVisible == false)
@@ -25,5 +26,5 @@ public class AdjustForKeyboard : MonoBehaviour
             keyboardWasVisible = false;
         }
     }
-
+#endif
 }

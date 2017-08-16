@@ -3,14 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class c_SetupRankingRound : MonoBehaviour
+public class RankingRound : MonoBehaviour
 {
     public Text currentQuestion;
     public GameObject nameBlockHeader, nameBlock;
 
-    void Start()
+    private void Start()
     {
-        currentQuestion.text = c_SuperlativeQuestions.rankingRoundQuestions[c_SuperlativeQuestions.currentRound];
+        currentQuestion.text = SuperlativeQuestions.rankingRoundQuestions[SuperlativeQuestions.currentRound];
 
         for (int i = 0; i < PhotonNetwork.room.PlayerCount; i++)
         {
@@ -20,17 +20,24 @@ public class c_SetupRankingRound : MonoBehaviour
                 if (playerNum != -1 && !PhotonNetwork.playerList[i].NickName.Equals(""))
                 {
                     GameObject newNameBlock = Instantiate(nameBlock, nameBlockHeader.transform);
-                    s_global.allPlayers.Add(PhotonNetwork.playerList[i]);
+                    Global.allPlayers.Add(PhotonNetwork.playerList[i]);
 
                     newNameBlock.transform.GetChild(0).GetComponent<Text>().text = PhotonNetwork.playerList[i].NickName;
-                    newNameBlock.transform.GetChild(1).GetComponent<Image>().sprite = GetComponent<c_PossibleCharacterInfo>().characterPictures[0];
+                    newNameBlock.transform.GetChild(1).GetComponent<Image>().sprite = GetComponent<PossibleCharacterInfo>().characterPictures[0];
                 }
             }
         }
     }
 
-    void Update()
+    public void SubmitRankingOrder()
     {
+        List<string> playerRankingOrder = new List<string>();
 
+        for (int i = 0; i < Global.allPlayers.Count - 2; i++)
+        {
+            playerRankingOrder.Add(nameBlockHeader.transform.GetChild(i).GetChild(0).GetComponent<Text>().text);
+
+            Debug.Log(playerRankingOrder[i]);
+        }
     }
 }

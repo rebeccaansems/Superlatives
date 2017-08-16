@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class g_GameStart : Photon.MonoBehaviour
+public class GameStart : Photon.MonoBehaviour
 {
-    public s_CreateGame server;
+    public CreateGame server;
 
     public void SendGameHasStarted()
     {

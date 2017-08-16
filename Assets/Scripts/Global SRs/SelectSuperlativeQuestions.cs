@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class g_SelectSuperlativeQuestions : Photon.MonoBehaviour
+public class SelectSuperlativeQuestions : Photon.MonoBehaviour
 {
     public bool isClient;
 
@@ -17,11 +17,11 @@ public class g_SelectSuperlativeQuestions : Photon.MonoBehaviour
         if (isClient)
         {
             Debug.Log("[PHOTON] Recieved superlative questions");
-            c_SuperlativeQuestions.rankingRoundQuestions = new List<string>();
-            c_SuperlativeQuestions.rankingRoundQuestions.Add(data[0]);
-            c_SuperlativeQuestions.rankingRoundQuestions.Add(data[1]);
-            c_SuperlativeQuestions.rankingRoundQuestions.Add(data[2]);
-            c_SuperlativeQuestions.rankingRoundQuestions.Add(data[3]);
+            SuperlativeQuestions.rankingRoundQuestions = new List<string>();
+            SuperlativeQuestions.rankingRoundQuestions.Add(data[0]);
+            SuperlativeQuestions.rankingRoundQuestions.Add(data[1]);
+            SuperlativeQuestions.rankingRoundQuestions.Add(data[2]);
+            SuperlativeQuestions.rankingRoundQuestions.Add(data[3]);
         }
     }
 }

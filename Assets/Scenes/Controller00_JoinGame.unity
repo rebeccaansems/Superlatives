@@ -395,7 +395,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 2123674705}
-        m_MethodName: JoinGame
+        m_MethodName: BeginJoinGame
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

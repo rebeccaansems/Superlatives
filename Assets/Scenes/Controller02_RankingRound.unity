@@ -184,8 +184,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_MethodName: SubmitPlayerInfo
+      - m_Target: {fileID: 2004860521}
+        m_MethodName: SubmitRankingOrder
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

@@ -4,14 +4,14 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class c_CharacterSelect : MonoBehaviour
+public class CharacterSelect : MonoBehaviour
 {
     public InputField playerName;
     public GameObject[] playerQuestions;
     public GameObject submitCharPanel, submitPlayerInfoButton, startGamePanel,
         nameBlockHeader, nameBlock, startGameButton, questionPanelParent;
 
-    public g_GameStart gameStart;
+    public GameStart gameStart;
 
     private List<Text> playerAnswerTexts;
 
@@ -26,7 +26,7 @@ public class c_CharacterSelect : MonoBehaviour
 
     private IEnumerator SetupQuestions()
     {
-        while (c_SuperlativeQuestions.rankingRoundQuestions == null)
+        while (SuperlativeQuestions.rankingRoundQuestions == null)
         {
             yield return null;
         }
@@ -36,7 +36,7 @@ public class c_CharacterSelect : MonoBehaviour
             GameObject newQuestion = Instantiate(playerQuestions[0], questionPanelParent.transform);
 
             Text questionText = newQuestion.transform.GetChild(0).transform.GetComponent<Text>();
-            questionText.text = c_SuperlativeQuestions.rankingRoundQuestions[i];
+            questionText.text = SuperlativeQuestions.rankingRoundQuestions[i];
 
             Text answerText = newQuestion.transform.GetChild(1).transform.GetChild(1).gameObject.GetComponent<Text>();
             playerAnswerTexts.Add(answerText);
@@ -87,16 +87,16 @@ public class c_CharacterSelect : MonoBehaviour
                     {
                         hasBeenAdded[playerNum] = true;
                         GameObject newNameBlock = Instantiate(nameBlock, nameBlockHeader.transform);
-                        s_global.allPlayers.Add(PhotonNetwork.playerList[i]);
+                        Global.allPlayers.Add(PhotonNetwork.playerList[i]);
 
                         newNameBlock.transform.GetChild(0).GetComponent<Text>().text = PhotonNetwork.playerList[i].NickName;
-                        newNameBlock.transform.GetChild(1).GetComponent<Image>().sprite = GetComponent<c_PossibleCharacterInfo>().characterPictures[0];
+                        newNameBlock.transform.GetChild(1).GetComponent<Image>().sprite = GetComponent<PossibleCharacterInfo>().characterPictures[0];
                         previousNumPlayers = PhotonNetwork.room.PlayerCount;
                     }
                 }
             }
 
-            startGameButton.GetComponent<Button>().interactable = (PhotonNetwork.room.PlayerCount - 1 == s_global.allPlayers.Count);
+            startGameButton.GetComponent<Button>().interactable = (PhotonNetwork.room.PlayerCount - 1 == Global.allPlayers.Count);
         }
         else
         {

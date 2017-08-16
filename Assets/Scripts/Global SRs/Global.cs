@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class s_global : MonoBehaviour
+public class Global : MonoBehaviour
 {
     public static List<PhotonPlayer> allPlayers = new List<PhotonPlayer>();
 }
