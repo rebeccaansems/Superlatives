@@ -20,6 +20,7 @@ public class UIElementDragger : MonoBehaviour
     private bool dragging = false;
 
     private Vector2 originalPosition;
+    private Vector3 offset;
     private Transform objectToDrag;
     private Image objectToDragImage;
 
@@ -29,6 +30,7 @@ public class UIElementDragger : MonoBehaviour
 
     void Update()
     {
+
         if (Input.GetMouseButtonDown(0))
         {
             objectToDrag = GetDraggableTransformUnderMouse();
@@ -39,6 +41,7 @@ public class UIElementDragger : MonoBehaviour
 
                 objectToDrag.SetAsLastSibling();
 
+                offset = objectToDrag.transform.position - Input.mousePosition;
                 originalPosition = objectToDrag.position;
                 objectToDragImage = objectToDrag.GetComponent<Image>();
                 objectToDragImage.raycastTarget = false;
@@ -47,7 +50,7 @@ public class UIElementDragger : MonoBehaviour
 
         if (dragging)
         {
-            objectToDrag.position = Input.mousePosition;
+            objectToDrag.position = Input.mousePosition + offset;
             vert.enabled = false;
         }
 
