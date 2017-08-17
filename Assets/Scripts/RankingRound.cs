@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class RankingRound : MonoBehaviour
@@ -34,5 +35,6 @@ public class RankingRound : MonoBehaviour
     public void SubmitRankingOrder()
     {
         submitRanking.SendRankingNames(uiElement.GetPlayerListOrder().ToArray());
+        SceneManager.LoadScene("Controller03_WaitingScreen");
     }
 }
