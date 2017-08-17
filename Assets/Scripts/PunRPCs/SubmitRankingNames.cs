@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class SubmitRankingNames : Photon.MonoBehaviour
@@ -16,8 +17,11 @@ public class SubmitRankingNames : Photon.MonoBehaviour
     {
         if (server != null)
         {
-            Debug.Log("[PHOTON] Recieved ranking names from player");
-            server.ScorePlayers(data);
+            int playerNum = int.Parse(data[data.Count() - 1]);
+            data = data.Take(data.Count() - 1).ToArray();
+
+            Debug.Log("[PHOTON] Recieved ranking names from player #" + playerNum);
+            server.ScorePlayers(playerNum, data);
         }
     }
 }

@@ -50,6 +50,7 @@ public class CharacterSelect : MonoBehaviour
         playerInfo.Add("PlayerAnswer2", playerAnswerTexts[1].text);
         playerInfo.Add("PlayerAnswer3", playerAnswerTexts[2].text);
         playerInfo.Add("PlayerAnswer4", playerAnswerTexts[3].text);
+        playerInfo.Add("Score", 0);
         PhotonNetwork.player.SetCustomProperties(playerInfo);
 
         PhotonNetwork.playerName = playerName.text;
