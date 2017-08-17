@@ -117,6 +117,7 @@ public class UIElementDragger : MonoBehaviour
 
     public List<string> GetPlayerListOrder()
     {
+        playerOrder.Reverse();
         return playerOrder;
     }
 }
