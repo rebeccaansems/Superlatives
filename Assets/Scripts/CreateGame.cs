@@ -54,7 +54,7 @@ public class CreateGame : MonoBehaviour
         Debug.Log("[PHOTON] Game has started");
 
         PhotonNetwork.room.IsOpen = false;
-        SceneManager.LoadScene("Server01_GameStarted");
+        SceneManager.LoadScene("Server01_MainGame");
     }
 
     private void Update()

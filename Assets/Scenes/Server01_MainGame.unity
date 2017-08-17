@@ -433,6 +433,7 @@ GameObject:
   - component: {fileID: 1267759001}
   - component: {fileID: 1267759000}
   - component: {fileID: 1267758999}
+  - component: {fileID: 1267759002}
   m_Layer: 0
   m_Name: Room SR
   m_TagString: Untagged
@@ -491,6 +492,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1267759002
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1267758998}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 148d39015a61e2d4aa0607804e667f3c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isClient: 0
 --- !u!1 &1316396415
 GameObject:
   m_ObjectHideFlags: 0
@@ -594,6 +607,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   text: {fileID: 1975553759}
+  nextRound: {fileID: 1267759002}
 --- !u!4 &1720045012
 Transform:
   m_ObjectHideFlags: 0

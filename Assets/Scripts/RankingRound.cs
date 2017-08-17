@@ -13,7 +13,7 @@ public class RankingRound : MonoBehaviour
 
     private void Start()
     {
-        currentQuestion.text = SuperlativeQuestions.rankingRoundQuestions[SuperlativeQuestions.currentRound];
+        currentQuestion.text = SuperlativeQuestions.rankingRoundQuestions[Global.currentRoundNumber];
 
         for (int i = 0; i < PhotonNetwork.room.PlayerCount; i++)
         {
