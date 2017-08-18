@@ -17,11 +17,11 @@ public class SelectSuperlativeQuestions : Photon.MonoBehaviour
         if (isClient)
         {
             Debug.Log("[PHOTON] Recieved superlative questions");
-            SuperlativeQuestions.rankingRoundQuestions = new List<string>();
-            SuperlativeQuestions.rankingRoundQuestions.Add(data[0]);
-            SuperlativeQuestions.rankingRoundQuestions.Add(data[1]);
-            SuperlativeQuestions.rankingRoundQuestions.Add(data[2]);
-            SuperlativeQuestions.rankingRoundQuestions.Add(data[3]);
+            Global.rankingRoundQuestions = new List<string>();
+            Global.rankingRoundQuestions.Add(data[0]);
+            Global.rankingRoundQuestions.Add(data[1]);
+            Global.rankingRoundQuestions.Add(data[2]);
+            Global.rankingRoundQuestions.Add(data[3]);
         }
     }
 }

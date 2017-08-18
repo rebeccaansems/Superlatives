@@ -26,7 +26,7 @@ public class CharacterSelect : MonoBehaviour
 
     private IEnumerator SetupQuestions()
     {
-        while (SuperlativeQuestions.rankingRoundQuestions == null)
+        while (Global.rankingRoundQuestions == null)
         {
             yield return null;
         }
@@ -36,7 +36,7 @@ public class CharacterSelect : MonoBehaviour
             GameObject newQuestion = Instantiate(playerQuestions[0], questionPanelParent.transform);
 
             Text questionText = newQuestion.transform.GetChild(0).transform.GetComponent<Text>();
-            questionText.text = SuperlativeQuestions.rankingRoundQuestions[i];
+            questionText.text = Global.rankingRoundQuestions[i];
 
             Text answerText = newQuestion.transform.GetChild(1).transform.GetChild(1).gameObject.GetComponent<Text>();
             playerAnswerTexts.Add(answerText);
