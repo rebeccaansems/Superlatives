@@ -41,7 +41,6 @@ public class CharacterSelect : MonoBehaviour
             Text answerText = newQuestion.transform.GetChild(1).transform.GetChild(1).gameObject.GetComponent<Text>();
             playerAnswerTexts.Add(answerText);
         }
-        Debug.Log(Global.rankingRoundQuestions[0] + " " + Global.rankingRoundQuestions[1]);
     }
 
     public void SubmitPlayerInfo()
@@ -91,8 +90,9 @@ public class CharacterSelect : MonoBehaviour
                         GameObject newNameBlock = Instantiate(nameBlock, nameBlockHeader.transform);
                         Global.allPlayers.Add(PhotonNetwork.playerList[i]);
 
-                        newNameBlock.transform.GetChild(0).GetComponent<Text>().text = PhotonNetwork.playerList[i].NickName;
-                        newNameBlock.transform.GetChild(1).GetComponent<Image>().sprite = GetComponent<PossibleCharacterInfo>().characterPictures[0];
+                        newNameBlock.transform.GetChild(1).GetComponent<Text>().text = PhotonNetwork.playerList[i].NickName;
+                        newNameBlock.transform.GetChild(2).GetComponent<Text>().text = "Score: " + PhotonNetwork.playerList[i].CustomProperties["Score"];
+                        newNameBlock.transform.GetChild(3).GetComponent<Image>().sprite = GetComponent<PossibleCharacterInfo>().characterPictures[0];
                         previousNumPlayers = PhotonNetwork.room.PlayerCount;
                     }
                 }

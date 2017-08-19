@@ -14,7 +14,6 @@ public class RankingRound : MonoBehaviour
     private void Start()
     {
         currentQuestion.text = Global.rankingRoundQuestions[Global.currentRoundNumber];
-        Debug.Log(Global.rankingRoundQuestions[0] + " " + Global.rankingRoundQuestions[1]);
 
         for (int i = 0; i < PhotonNetwork.room.PlayerCount; i++)
         {
@@ -26,8 +25,8 @@ public class RankingRound : MonoBehaviour
                     GameObject newNameBlock = Instantiate(nameBlock, nameBlockHeader.transform);
                     newNameBlock.name = PhotonNetwork.playerList[i].NickName;
 
-                    newNameBlock.transform.GetChild(0).GetComponent<Text>().text = PhotonNetwork.playerList[i].NickName;
-                    newNameBlock.transform.GetChild(1).GetComponent<Image>().sprite = GetComponent<PossibleCharacterInfo>().characterPictures[0];
+                    newNameBlock.transform.GetChild(1).GetComponent<Text>().text = PhotonNetwork.playerList[i].NickName;
+                    newNameBlock.transform.GetChild(2).GetComponent<Image>().sprite = GetComponent<PossibleCharacterInfo>().characterPictures[0];
                 }
             }
         }
