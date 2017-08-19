@@ -21,6 +21,7 @@ public class SubmitRankingNames : Photon.MonoBehaviour
             data = data.Take(data.Count() - 1).ToArray();
 
             Debug.Log("[PHOTON] Recieved ranking names from player #" + playerNum);
+
             server.ScorePlayers(playerNum, data);
         }
     }

@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class ForceResolution : MonoBehaviour
 {
-
+#if !UNITY_EDITOR
     void Awake()
     {
         if (Debug.isDebugBuild)
@@ -20,4 +20,5 @@ public class ForceResolution : MonoBehaviour
             }
         }
     }
+#endif
 }

@@ -8,7 +8,6 @@ public class SelectSuperlativeQuestions : Photon.MonoBehaviour
 
     public void SendSuperlativeQuestion(string[] data)
     {
-
         this.GetComponent<PhotonView>().RPC("SuperlativeQuestionsRecieved", PhotonTargets.AllBufferedViaServer, data);
     }
 
