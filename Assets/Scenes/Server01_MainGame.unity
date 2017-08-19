@@ -123,7 +123,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &282846961
 RectTransform:
   m_ObjectHideFlags: 0
@@ -749,7 +749,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1386424687
 RectTransform:
   m_ObjectHideFlags: 0
@@ -818,6 +818,8 @@ MonoBehaviour:
   currentQuestion: {fileID: 1929258550}
   currentScore: {fileID: 898517930}
   animatePanelIn: {fileID: 7400000, guid: f8e2424007bfa0f4892f401dc8a3d6b6, type: 2}
+  rightSprite: {fileID: 21300000, guid: 17a8f7ebff0ebfd4a86fddd62bc3f5e3, type: 3}
+  wrongSprite: {fileID: 21300000, guid: 79d991008c7e04347baf96b9a0584f4a, type: 3}
 --- !u!4 &1720045012
 Transform:
   m_ObjectHideFlags: 0

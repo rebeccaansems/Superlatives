@@ -7,27 +7,30 @@ public class ScorePlayers : MonoBehaviour
 {
     public class Pair<T1, T2>
     {
-        public T1 First { get; private set; }
-        public T2 Second { get; private set; }
+        public T1 Name { get; private set; }
+        public T2 Score { get; private set; }
         internal Pair(T1 first, T2 second)
         {
-            First = first;
-            Second = second;
+            Name = first;
+            Score = second;
         }
     }
 
+    private List<Pair<string, int>> correctPlayerRankingOrder;
+
     private List<Pair<string, int>> SortRankOrder(int roundNumber)
     {
-        List<Pair<string, int>> pairList = new List<Pair<string, int>>();
+        correctPlayerRankingOrder = new List<Pair<string, int>>();
         for (int i = 0; i < Global.allPlayers.Count; i++)
         {
-            pairList.Add(new Pair<string, int>(PhotonNetwork.otherPlayers[i].NickName,
+            correctPlayerRankingOrder.Add(new Pair<string, int>(PhotonNetwork.otherPlayers[i].NickName,
                 int.Parse(PhotonNetwork.otherPlayers[i].CustomProperties["PlayerAnswer" + roundNumber].ToString())));
         }
 
-        pairList = pairList.OrderBy(x => x.Second).ToList();
+        correctPlayerRankingOrder = correctPlayerRankingOrder.OrderBy(x => x.Score).ToList();
+        correctPlayerRankingOrder.Reverse();
 
-        return pairList;
+        return correctPlayerRankingOrder;
     }
 
     public int ScorePlayerRanking(int roundNumber, string[] playerRankings)
@@ -37,11 +40,16 @@ public class ScorePlayers : MonoBehaviour
 
         for (int i = 0; i < Global.allPlayers.Count; i++)
         {
-            if (pairList[i].First.Equals(playerRankings[i]))
+            if (pairList[i].Name.Equals(playerRankings[i]))
             {
                 score += roundNumber + 1;
             }
         }
         return score;
+    }
+
+    public bool DidPlayerScore(int currentRankingOrder, string playerName)
+    {
+        return correctPlayerRankingOrder[currentRankingOrder].Name.Equals(playerName);
     }
 }
