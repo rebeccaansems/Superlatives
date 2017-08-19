@@ -25,8 +25,8 @@ public class RankingRound : MonoBehaviour
                     GameObject newNameBlock = Instantiate(nameBlock, nameBlockHeader.transform);
                     newNameBlock.name = PhotonNetwork.playerList[i].NickName;
 
-                    newNameBlock.transform.GetChild(1).GetComponent<Text>().text = PhotonNetwork.playerList[i].NickName;
-                    newNameBlock.transform.GetChild(2).GetComponent<Image>().sprite = GetComponent<PossibleCharacterInfo>().characterPictures[0];
+                    newNameBlock.transform.GetChild(0).GetComponent<Text>().text = PhotonNetwork.playerList[i].NickName;
+                    newNameBlock.transform.GetChild(1).GetComponent<Image>().sprite = GetComponent<PossibleCharacterInfo>().characterPictures[0];
                 }
             }
         }
