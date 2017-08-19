@@ -9,6 +9,7 @@ public class MainGame : MonoBehaviour
     public StartNextRound nextRound;
     public GameObject currentModePanel, showingScorePanel, playerRankingPanel, playerRankingPanelParent, playerScoringBlock;
     public Text currentQuestion, currentScore;
+    public AnimationClip animatePanelIn;
 
     private int playerScore, playersScored = 0;
 
@@ -59,8 +60,10 @@ public class MainGame : MonoBehaviour
     {
         for (int i = 0; i < Global.allPlayers.Count; i++)
         {
-            GameObject newPlayerScore = Instantiate(playerRankingPanel, playerRankingPanelParent.transform);
-            newPlayerScore.transform.SetAsLastSibling();
+            GameObject newPlayerScore = Instantiate(playerRankingPanel);
+            newPlayerScore.GetComponent<Animation>().Stop();
+
+            newPlayerScore.transform.SetParent(playerRankingPanelParent.transform, false);
             newPlayerScore.transform.GetChild(1).GetComponent<Text>().text = Global.allPlayers[i].NickName;
 
             Transform playerScoringParent = newPlayerScore.transform.GetChild(2).GetChild(0).transform;
@@ -70,6 +73,12 @@ public class MainGame : MonoBehaviour
                 newPlayerScoreBlock.transform.GetChild(1).GetComponent<Text>().text = Global.playerRankGuesses[i][j];
                 newPlayerScoreBlock.transform.GetChild(2).GetComponent<Image>().sprite = this.GetComponent<PossibleCharacterInfo>().characterPictures[0];
             }
+
+            yield return new WaitForSeconds(2);
+
+            newPlayerScore.GetComponent<Animator>().SetBool("PlayAnimIn", true);
+
+            yield return new WaitForSeconds(8);
         }
 
         yield return new WaitForSeconds(1);
