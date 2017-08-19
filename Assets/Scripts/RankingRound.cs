@@ -14,6 +14,7 @@ public class RankingRound : MonoBehaviour
     private void Start()
     {
         currentQuestion.text = Global.rankingRoundQuestions[Global.currentRoundNumber];
+        Debug.Log(Global.rankingRoundQuestions[0] + " " + Global.rankingRoundQuestions[1]);
 
         for (int i = 0; i < PhotonNetwork.room.PlayerCount; i++)
         {

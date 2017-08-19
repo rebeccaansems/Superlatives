@@ -41,15 +41,16 @@ public class CharacterSelect : MonoBehaviour
             Text answerText = newQuestion.transform.GetChild(1).transform.GetChild(1).gameObject.GetComponent<Text>();
             playerAnswerTexts.Add(answerText);
         }
+        Debug.Log(Global.rankingRoundQuestions[0] + " " + Global.rankingRoundQuestions[1]);
     }
 
     public void SubmitPlayerInfo()
     {
         ExitGames.Client.Photon.Hashtable playerInfo = new ExitGames.Client.Photon.Hashtable();
-        playerInfo.Add("PlayerAnswer1", playerAnswerTexts[0].text);
-        playerInfo.Add("PlayerAnswer2", playerAnswerTexts[1].text);
-        playerInfo.Add("PlayerAnswer3", playerAnswerTexts[2].text);
-        playerInfo.Add("PlayerAnswer4", playerAnswerTexts[3].text);
+        playerInfo.Add("PlayerAnswer0", playerAnswerTexts[0].text);
+        playerInfo.Add("PlayerAnswer1", playerAnswerTexts[1].text);
+        playerInfo.Add("PlayerAnswer2", playerAnswerTexts[2].text);
+        playerInfo.Add("PlayerAnswer3", playerAnswerTexts[3].text);
         playerInfo.Add("Score", 0);
         PhotonNetwork.player.SetCustomProperties(playerInfo);
 

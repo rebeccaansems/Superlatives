@@ -5,7 +5,6 @@ using UnityEngine.UI;
 
 public class MainGame : MonoBehaviour
 {
-    public Text text;
     public StartNextRound nextRound;
 
     private int playerScore, playersScored = 0;

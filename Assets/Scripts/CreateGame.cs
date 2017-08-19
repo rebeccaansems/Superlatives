@@ -45,7 +45,7 @@ public class CreateGame : MonoBehaviour
         //word += possibleLetters[Random.Range(0, possibleLetters.Length)];
         //word += possibleLetters[Random.Range(0, possibleLetters.Length)];
         //word += possibleLetters[Random.Range(0, possibleLetters.Length)];
-        
+
         return word;
     }
 
@@ -95,21 +95,27 @@ public class CreateGame : MonoBehaviour
 
     private void SendQuestions()
     {
-        List<int> questionLocations = new List<int>();
-        int currentNum = -1;
-        while (questionLocations.Count < 4)
+        if (Global.rankingRoundQuestions == null)
         {
-            currentNum = Random.Range(0, SQL.rankingQuestions.Count);
-            if (!questionLocations.Contains(currentNum))
+            List<int> questionLocations = new List<int>();
+            int currentNum = -1;
+            while (questionLocations.Count < 4)
             {
-                questionLocations.Add(currentNum);
+                currentNum = Random.Range(0, SQL.rankingQuestions.Count);
+                if (!questionLocations.Contains(currentNum))
+                {
+                    questionLocations.Add(currentNum);
+                }
             }
+
+            Global.rankingRoundQuestions = new List<string>();
+            Global.rankingRoundQuestions.Add(SQL.rankingQuestions[questionLocations[0]].superlativeQuestion);
+            Global.rankingRoundQuestions.Add(SQL.rankingQuestions[questionLocations[1]].superlativeQuestion);
+            Global.rankingRoundQuestions.Add(SQL.rankingQuestions[questionLocations[2]].superlativeQuestion);
+            Global.rankingRoundQuestions.Add(SQL.rankingQuestions[questionLocations[3]].superlativeQuestion);
         }
 
         selectSuperlativeQuestions.SendSuperlativeQuestion(new string[4]
-            { SQL.rankingQuestions[questionLocations[0]].superlativeQuestion,
-            SQL.rankingQuestions[questionLocations[1]].superlativeQuestion,
-            SQL.rankingQuestions[questionLocations[2]].superlativeQuestion,
-            SQL.rankingQuestions[questionLocations[3]].superlativeQuestion });
+            { Global.rankingRoundQuestions[0], Global.rankingRoundQuestions[1], Global.rankingRoundQuestions[2], Global.rankingRoundQuestions[3] });
     }
 }
