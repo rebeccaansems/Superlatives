@@ -1,0 +1,21 @@
+fileFormatVersion: 2
+guid: 1f9c466f1dbb79244b35133ba91ce83b
+timeCreated: 1503108550
+licenseType: Pro
+TrueTypeFontImporter:
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: TrashHand
+  fontNames:
+  - TrashHand
+  fallbackFontReferences: []
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
