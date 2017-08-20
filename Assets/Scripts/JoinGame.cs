@@ -3,13 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class JoinGame : MonoBehaviour
 {
     public const string VERSION = "0.1";
 
     public Text infoText;
-    public InputField roomCodeInput;
+    public TextMeshProUGUI roomCodeInput;
 
     private string joinRoomCode;
     private bool roomExists = false;
