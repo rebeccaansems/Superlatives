@@ -684,7 +684,7 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_textAlignment: 257
+  m_textAlignment: 513
   m_isAlignmentEnumConverted: 1
   m_characterSpacing: 0
   m_wordSpacing: 0
@@ -2252,7 +2252,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   infoText: {fileID: 771144120}
-  roomCodeInput: {fileID: 421225174}
+  roomCodeInput: {fileID: 2134662347}
 --- !u!4 &2123674706
 Transform:
   m_ObjectHideFlags: 0

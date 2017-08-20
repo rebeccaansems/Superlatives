@@ -1,26 +1,27 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class CharacterSelect : MonoBehaviour
 {
-    public InputField playerName;
-    public GameObject[] playerQuestions;
+    public TMP_InputField playerName;
+    public GameObject playerQuestions;
     public GameObject submitCharPanel, submitPlayerInfoButton, startGamePanel,
         nameBlockHeader, nameBlock, startGameButton, questionPanelParent;
 
     public GameStart gameStart;
 
-    private List<Text> playerAnswerTexts;
+    private List<TMP_InputField> playerAnswerTexts;
 
     private int previousNumPlayers = 1;
     private bool[] hasBeenAdded = new bool[12];
 
     public void Start()
     {
-        playerAnswerTexts = new List<Text>();
+        playerAnswerTexts = new List<TMP_InputField>();
         StartCoroutine(SetupQuestions());
     }
 
@@ -33,12 +34,12 @@ public class CharacterSelect : MonoBehaviour
 
         for (int i = 0; i < 4; i++)
         {
-            GameObject newQuestion = Instantiate(playerQuestions[0], questionPanelParent.transform);
+            GameObject newQuestion = Instantiate(playerQuestions, questionPanelParent.transform);
 
-            Text questionText = newQuestion.transform.GetChild(0).transform.GetComponent<Text>();
+            TMP_Text questionText = newQuestion.transform.GetChild(0).transform.GetComponent<TMP_Text>();
             questionText.text = Global.rankingRoundQuestions[i];
 
-            Text answerText = newQuestion.transform.GetChild(1).transform.GetChild(1).gameObject.GetComponent<Text>();
+            TMP_InputField answerText = newQuestion.transform.GetChild(1).GetComponent<TMP_InputField>();
             playerAnswerTexts.Add(answerText);
         }
     }
@@ -90,8 +91,8 @@ public class CharacterSelect : MonoBehaviour
                         GameObject newNameBlock = Instantiate(nameBlock, nameBlockHeader.transform);
                         Global.allPlayers.Add(PhotonNetwork.playerList[i]);
 
-                        newNameBlock.transform.GetChild(1).GetComponent<Text>().text = PhotonNetwork.playerList[i].NickName;
-                        newNameBlock.transform.GetChild(2).GetComponent<Text>().text = "Score: " + PhotonNetwork.playerList[i].CustomProperties["Score"];
+                        newNameBlock.transform.GetChild(1).GetComponent<TMP_Text>().text = PhotonNetwork.playerList[i].NickName;
+                        newNameBlock.transform.GetChild(2).GetComponent<TMP_Text>().text = "Score: " + PhotonNetwork.playerList[i].CustomProperties["Score"];
                         newNameBlock.transform.GetChild(3).GetComponent<Image>().sprite = GetComponent<PossibleCharacterInfo>().characterPictures[0];
                         previousNumPlayers = PhotonNetwork.room.PlayerCount;
                     }

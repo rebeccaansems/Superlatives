@@ -4,13 +4,15 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using TMPro;
+using System.Text.RegularExpressions;
+using System;
 
 public class JoinGame : MonoBehaviour
 {
     public const string VERSION = "0.1";
 
     public Text infoText;
-    public TextMeshProUGUI roomCodeInput;
+    public TMP_InputField roomCodeInput;
 
     private string joinRoomCode;
     private bool roomExists = false;
@@ -37,6 +39,7 @@ public class JoinGame : MonoBehaviour
 
         for (int i = 0; i < rooms.Length; i++)
         {
+            Debug.Log(String.Equals(joinRoomCode, rooms[i].Name, StringComparison.InvariantCultureIgnoreCase));
             if (rooms[i].Name.Equals(joinRoomCode) && rooms[i].IsOpen)
             {
                 Debug.Log("[PHOTON] Joined: " + joinRoomCode);
