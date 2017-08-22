@@ -293,7 +293,7 @@ Canvas:
   m_GameObject: {fileID: 399863743}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 1
+  m_RenderMode: 0
   m_Camera: {fileID: 1545719493}
   m_PlaneDistance: 100
   m_PixelPerfect: 1
@@ -1265,7 +1265,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7fbf2bac9e8efa04fb12b8c352a337ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentQuestion: {fileID: 0}
+  currentQuestion: {fileID: 649319807}
   nameBlockHeader: {fileID: 1810670615}
   nameBlock: {fileID: 1299526138236352, guid: c1a3dff4411e7cf4a8fccefa92466d2d, type: 2}
   submitRanking: {fileID: 1057982033}

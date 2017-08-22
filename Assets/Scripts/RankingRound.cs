@@ -1,12 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class RankingRound : MonoBehaviour
 {
-    public Text currentQuestion;
+    public TMP_Text currentQuestion;
     public GameObject nameBlockHeader, nameBlock;
     public SubmitRankingNames submitRanking;
     public UIElementDragger uiElement;
@@ -25,7 +26,7 @@ public class RankingRound : MonoBehaviour
                     GameObject newNameBlock = Instantiate(nameBlock, nameBlockHeader.transform);
                     newNameBlock.name = PhotonNetwork.playerList[i].NickName;
 
-                    newNameBlock.transform.GetChild(0).GetComponent<Text>().text = PhotonNetwork.playerList[i].NickName;
+                    newNameBlock.transform.GetChild(0).GetComponent<TMP_Text>().text = PhotonNetwork.playerList[i].NickName;
                     newNameBlock.transform.GetChild(1).GetComponent<Image>().sprite = GetComponent<PossibleCharacterInfo>().characterPictures[0];
                 }
             }
