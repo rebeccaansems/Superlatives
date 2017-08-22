@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -19,6 +20,7 @@ public class SubmitRankingNames : Photon.MonoBehaviour
         {
             int playerNum = int.Parse(data[data.Count() - 1]);
             data = data.Take(data.Count() - 1).ToArray();
+            Array.Reverse(data);
 
             Debug.Log("[PHOTON] Recieved ranking names from player #" + playerNum);
 

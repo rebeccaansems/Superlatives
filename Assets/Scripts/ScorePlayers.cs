@@ -27,8 +27,7 @@ public class ScorePlayers : MonoBehaviour
                 int.Parse(PhotonNetwork.otherPlayers[i].CustomProperties["PlayerAnswer" + roundNumber].ToString())));
         }
 
-        correctPlayerRankingOrder = correctPlayerRankingOrder.OrderBy(x => x.Score).ToList();
-        correctPlayerRankingOrder.Reverse();
+        correctPlayerRankingOrder = correctPlayerRankingOrder.OrderByDescending(x => x.Score).ToList();
 
         return correctPlayerRankingOrder;
     }
@@ -45,6 +44,7 @@ public class ScorePlayers : MonoBehaviour
                 score += roundNumber + 1;
             }
         }
+
         return score;
     }
 
