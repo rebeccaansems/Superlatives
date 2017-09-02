@@ -114,12 +114,22 @@ public class MainGame : MonoBehaviour
         }
 
         yield return new WaitForSeconds(1);
+
+        StartNextRound();
     }
 
     public void StartNextRound()
     {
         Global.currentRoundNumber++;
         nextRound.NextRound();
+
+        currentModePanel.SetActive(true);
+        showingScorePanel.SetActive(false);
+
+        foreach (Transform child in playerRankingPanelParent.transform)
+        {
+            GameObject.Destroy(child.gameObject);
+        }
     }
 
     private IEnumerator UpdateScoreRandomValues(Text scoreText, int score)
