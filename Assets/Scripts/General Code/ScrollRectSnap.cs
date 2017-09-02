@@ -43,7 +43,7 @@ public class ScrollRectSnap : MonoBehaviour
 
             for (int i = 0; i < snapObjects.Length; i++)
             {
-                distance[i] = Mathf.Abs(center.transform.position.x - snapObjects[i].transform.position.x);
+                distance[i] = Mathf.Abs(center.transform.position.x - snapObjects[i].transform.position.x - 2);
             }
 
             float minDistance = Mathf.Min(distance);
