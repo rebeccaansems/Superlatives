@@ -12,7 +12,7 @@ public class MainGame : MonoBehaviour
     public AnimationClip animatePanelIn;
     public Sprite rightSprite, wrongSprite;
 
-    private int playerScore, playersScored = 0;
+    private int playersScored = 0;
     private List<Animator> rightWrongAnimators;
 
     public void ScorePlayers(int playerNum, string[] playerRankings)
@@ -95,8 +95,6 @@ public class MainGame : MonoBehaviour
                 {
                     rightWrongAnimators[j].transform.gameObject.GetComponent<Image>().sprite = rightSprite;
                     rightWrongAnimators[j].SetInteger("PlayAnimIn", 1);
-                    playerScore++;
-
                 }
                 else
                 {
@@ -108,7 +106,8 @@ public class MainGame : MonoBehaviour
             }
 
             Debug.Log(Global.allPlayers[i].NickName + ": " + Global.allPlayers[i].CustomProperties["PrevScore"] + " " + Global.allPlayers[i].CustomProperties["Score"]);
-            yield return StartCoroutine(UpdateScoreRandomValues(currentScore, int.Parse(Global.allPlayers[i].CustomProperties["Score"].ToString())));
+
+            currentScore.text = "Score: " + currentScore.ToString();
 
             oldPlayerScore = newPlayerScore;
         }
@@ -130,30 +129,5 @@ public class MainGame : MonoBehaviour
         {
             GameObject.Destroy(child.gameObject);
         }
-    }
-
-    private IEnumerator UpdateScoreRandomValues(Text scoreText, int score)
-    {
-        int scoreMax = score + 10;
-        int scoreMin = score - 10;
-        if (scoreMin < 1)
-        {
-            scoreMin = 1;
-        }
-
-        scoreText.text = "Score: " + UnityEngine.Random.Range(scoreMin, scoreMax).ToString();
-        yield return new WaitForSeconds(0.2f);
-        scoreText.text = "Score: " + UnityEngine.Random.Range(scoreMin, scoreMax).ToString();
-        yield return new WaitForSeconds(0.2f);
-        scoreText.text = "Score: " + UnityEngine.Random.Range(scoreMin, scoreMax).ToString();
-        yield return new WaitForSeconds(0.2f);
-        scoreText.text = "Score: " + UnityEngine.Random.Range(scoreMin, scoreMax).ToString();
-        yield return new WaitForSeconds(0.2f);
-        scoreText.text = "Score: " + UnityEngine.Random.Range(scoreMin, scoreMax).ToString();
-        yield return new WaitForSeconds(0.2f);
-        scoreText.text = "Score: " + UnityEngine.Random.Range(scoreMin, scoreMax).ToString();
-        yield return new WaitForSeconds(0.2f);
-        scoreText.text = "Score: " + score.ToString();
-        yield return new WaitForSeconds(2f);
     }
 }

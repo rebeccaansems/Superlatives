@@ -41,7 +41,7 @@ public class ScorePlayers : MonoBehaviour
         {
             if (pairList[i].Name.Equals(playerRankings[i]))
             {
-                score += roundNumber + 1;
+                score++;
             }
         }
 
