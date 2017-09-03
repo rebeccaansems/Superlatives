@@ -8,7 +8,7 @@ public class MainGame : MonoBehaviour
 {
     public StartNextRound nextRound;
     public GameObject currentModePanel, showingScorePanel, playerRankingPanel, playerRankingPanelParent, playerScoringBlock;
-    public Text currentQuestion, currentScore;
+    public Text currentQuestion;
     public AnimationClip animatePanelIn;
     public Sprite rightSprite, wrongSprite;
 
@@ -65,7 +65,7 @@ public class MainGame : MonoBehaviour
             newPlayerScore.transform.SetParent(playerRankingPanelParent.transform, false);
             newPlayerScore.transform.GetChild(1).GetComponent<Text>().text = Global.allPlayers[i].NickName;
 
-            currentScore.text = "Score: " + Global.allPlayers[i].CustomProperties["PrevScore"].ToString();
+            newPlayerScore.transform.GetChild(3).GetComponent<Text>().text = "Score: " + Global.allPlayers[i].CustomProperties["PrevScore"].ToString();
 
             Transform playerScoringParent = newPlayerScore.transform.GetChild(2).GetChild(0).transform;
             rightWrongAnimators = new List<Animator>();
@@ -107,14 +107,16 @@ public class MainGame : MonoBehaviour
 
             Debug.Log(Global.allPlayers[i].NickName + ": " + Global.allPlayers[i].CustomProperties["PrevScore"] + " " + Global.allPlayers[i].CustomProperties["Score"]);
 
-            currentScore.text = "Score: " + currentScore.ToString();
-
+            yield return new WaitForSeconds(1);
+            newPlayerScore.transform.GetChild(3).GetComponent<Text>().text = "Score: " + Global.allPlayers[i].CustomProperties["Score"];
             oldPlayerScore = newPlayerScore;
         }
 
         yield return new WaitForSeconds(1);
 
         StartNextRound();
+
+        yield return new WaitForSeconds(1);
     }
 
     public void StartNextRound()
