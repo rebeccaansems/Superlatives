@@ -61,11 +61,13 @@ public class CharacterSelect : MonoBehaviour
         if (PhotonNetwork.player.ID == 2)
         {
             Debug.Log("[PHOTON] Player is first to join");
+            Global.currentSectionOfGame = 2;
             startGameButton.SetActive(true);
         }
         else
         {
             Debug.Log("[PHOTON] Player is not first to join");
+            Global.currentSectionOfGame = 3;
             startGameButton.SetActive(false);
         }
     }
@@ -75,10 +77,12 @@ public class CharacterSelect : MonoBehaviour
         gameStart.SendGameHasStarted();
         if (Global.isRankingRound)
         {
+            Global.currentSectionOfGame = 4;
             SceneManager.LoadScene("Controller02_RankingRound");
         }
         else
         {
+            Global.currentSectionOfGame = 5;
             SceneManager.LoadScene("Controller03_PickingScreen");
         }
     }

@@ -50,4 +50,5 @@ MonoBehaviour:
   - RankingNamesRecieved
   - BeginNextRound
   - MostLikelyNameRecieved
+  - RecieveRejoinGame
   DisableAutoOpenWizard: 1

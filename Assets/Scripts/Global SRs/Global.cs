@@ -13,5 +13,18 @@ public class Global : MonoBehaviour
     public static List<string>[] playerMostLikely = new List<string>[MaxPlayers];
 
     public static int currentRoundNumber = 0;
+    public static int currentSectionOfGame = 0;
+    /// <summary>
+    /// 00 - Started game
+    /// 01 - Joined game, loaded into character select
+    /// 02 - Submitted character, is first to join
+    /// 03 - Submitted character, is not first to join
+    /// 04 - Started game, ranking round
+    /// 05 - Started game, most liklely round
+    /// 06 - Submitted guess for ranking round
+    /// 07 - Submitted guess for most liklely round
+    /// 08 - 
+    /// 09 - 
+    /// </summary>
     public static bool isRankingRound = true;
 }

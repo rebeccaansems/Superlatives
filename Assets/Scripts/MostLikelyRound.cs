@@ -55,6 +55,7 @@ public class MostLikelyRound : MonoBehaviour
     public void SubmitMostLikely()
     {
         submitMostLikely.SendMostLikelyName(selectedObject.transform.GetChild(0).GetComponent<TMP_Text>().text);
+        Global.currentSectionOfGame = 7;
         SceneManager.LoadScene("Controller04_WaitingScreen");
     }
 }

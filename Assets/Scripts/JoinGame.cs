@@ -49,6 +49,7 @@ public class JoinGame : MonoBehaviour
                 infoText.color = Color.green;
                 infoText.text = "Joined: " + joinRoomCode;
 
+                Global.currentSectionOfGame = 1;
                 SceneManager.LoadScene("Controller01_CharacterSelect");
                 break;
             }

@@ -36,6 +36,7 @@ public class RankingRound : MonoBehaviour
     public void SubmitRankingOrder()
     {
         submitRanking.SendRankingNames(uiElement.GetPlayerListOrder());
+        Global.currentSectionOfGame = 6;
         SceneManager.LoadScene("Controller04_WaitingScreen");
     }
 }
