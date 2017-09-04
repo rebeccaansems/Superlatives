@@ -145,6 +145,32 @@ public class MainGame : MonoBehaviour
 
         yield return new WaitForSeconds(1);
 
+        StartCoroutine("ShowRankingCorrectOrder");
+    }
+
+    private IEnumerator ShowRankingCorrectOrder()
+    {
+        GameObject newPlayerScore = Instantiate(playerRankingPanel);
+        newPlayerScore.transform.SetParent(playerPanelParent.transform, false);
+        newPlayerScore.transform.GetChild(1).GetComponent<Text>().text = "Correct Rank Order";
+
+        Transform playerScoringParent = newPlayerScore.transform.GetChild(2).GetChild(0).transform;
+        for (int j = 0; j < Global.allPlayers.Count; j++)
+        {
+            GameObject newPlayerScoreBlock = Instantiate(playerScoringBlock, playerScoringParent);
+            newPlayerScoreBlock.transform.GetChild(1).GetComponent<Text>().text = this.GetComponent<ScorePlayers>().correctPlayerRankingOrder[j].Name;
+            newPlayerScoreBlock.transform.GetChild(2).GetComponent<Image>().sprite = this.GetComponent<PossibleCharacterInfo>().characterPictures[0];
+            newPlayerScoreBlock.transform.GetChild(4).GetComponent<Text>().text = this.GetComponent<ScorePlayers>().correctPlayerRankingOrder[j].Score.ToString();
+
+            rightWrongAnimators.Add(newPlayerScoreBlock.GetComponentInChildren<Animator>());
+        }
+
+        yield return new WaitForSeconds(2);
+
+        newPlayerScore.GetComponent<Animator>().SetBool("PlayAnimIn", true);
+
+        yield return new WaitForSeconds(5);
+
         StartCoroutine("ShowAllPlayersScores");
     }
 

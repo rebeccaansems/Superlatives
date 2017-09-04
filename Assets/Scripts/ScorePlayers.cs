@@ -17,8 +17,7 @@ public class ScorePlayers : MonoBehaviour
     }
 
     public List<Pair<string, int>> playerMostLikelyVotes;
-
-    private List<Pair<string, int>> correctPlayerRankingOrder;
+    public List<Pair<string, int>> correctPlayerRankingOrder;
 
     private List<Pair<string, int>> SortRankOrder(int roundNumber)
     {
