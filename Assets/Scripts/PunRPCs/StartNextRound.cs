@@ -18,14 +18,13 @@ public class StartNextRound : Photon.MonoBehaviour
     {
         if (isClient)
         {
-            Debug.Log("[PHOTON] Started next round: " + roundNumber);
-            Global.currentRoundNumber = roundNumber;
-
-            if (Global.currentRoundNumber > 3)
+            if (roundNumber == 0 && Global.currentRoundNumber != 0)
             {
                 Global.isRankingRound = false;
-                Global.currentRoundNumber = 0;
             }
+            Global.currentRoundNumber = roundNumber;
+
+            Debug.Log("[PHOTON] Started next round: " + Global.currentRoundNumber + " RR: " + Global.isRankingRound);
 
             if (Global.isRankingRound)
             {

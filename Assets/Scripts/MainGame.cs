@@ -152,7 +152,7 @@ public class MainGame : MonoBehaviour
     {
         GameObject newPlayerScore = Instantiate(playerRankingPanel);
         newPlayerScore.transform.SetParent(playerPanelParent.transform, false);
-        newPlayerScore.transform.GetChild(1).GetComponent<Text>().text = "Correct Rank Order";
+        newPlayerScore.transform.GetChild(1).GetComponent<Text>().text = "Correct Order";
 
         Transform playerScoringParent = newPlayerScore.transform.GetChild(2).GetChild(0).transform;
         for (int j = 0; j < Global.allPlayers.Count; j++)
@@ -169,7 +169,7 @@ public class MainGame : MonoBehaviour
 
         newPlayerScore.GetComponent<Animator>().SetBool("PlayAnimIn", true);
 
-        yield return new WaitForSeconds(5);
+        yield return new WaitForSeconds(4);
 
         StartCoroutine("ShowAllPlayersScores");
     }
@@ -192,7 +192,7 @@ public class MainGame : MonoBehaviour
 
         newPlayerScore.GetComponent<Animator>().SetBool("PlayAnimIn", true);
 
-        yield return new WaitForSeconds(10);
+        yield return new WaitForSeconds(7);
 
         StartCoroutine("ShowAllPlayersScores");
     }
@@ -224,7 +224,7 @@ public class MainGame : MonoBehaviour
 
         newPlayerScore.GetComponent<Animator>().SetBool("PlayAnimIn", true);
 
-        yield return new WaitForSeconds(10);
+        yield return new WaitForSeconds(7);
 
         StartNextRound();
     }
@@ -233,7 +233,7 @@ public class MainGame : MonoBehaviour
     {
         Global.currentRoundNumber++;
 
-        if (Global.currentRoundNumber > 3)
+        if (Global.currentRoundNumber == 4)
         {
             Global.isRankingRound = false;
             Global.currentRoundNumber = 0;

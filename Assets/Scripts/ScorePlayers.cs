@@ -72,6 +72,11 @@ public class ScorePlayers : MonoBehaviour
         {
             if (playerMostLikelyVotes[i].Name.Equals(chosenPlayerName))
             {
+                playerMostLikelyVotes[i].Score -= 1;
+                if(playerMostLikelyVotes[i].Score < 0)
+                {
+                    playerMostLikelyVotes[i].Score = 0;
+                }
                 return playerMostLikelyVotes[i].Score;
             }
         }
