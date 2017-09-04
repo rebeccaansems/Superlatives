@@ -5,9 +5,9 @@ using UnityEngine.SceneManagement;
 
 public class AccidentalDisconnectRecovery : MonoBehaviour
 {
-    private void OnApplicationFocus(bool paused)
+    private void OnApplicationPause(bool paused)
     {
-        if (paused)
+        if (!paused)
         {
             Debug.Log("ATTEMPTING RECOVERY: " + Global.currentSectionOfGame);
             switch (Global.currentSectionOfGame)
@@ -15,10 +15,13 @@ public class AccidentalDisconnectRecovery : MonoBehaviour
                 case 0:
                     break;
                 case 1:
+                    SceneManager.LoadScene("Controller00_JoinGame");
                     break;
                 case 2:
+                    SceneManager.LoadScene("Controller00_JoinGame");
                     break;
                 case 3:
+                    SceneManager.LoadScene("Controller00_JoinGame");
                     break;
                 case 4:
                     SceneManager.LoadScene("Controller02_RankingRound");
@@ -27,12 +30,16 @@ public class AccidentalDisconnectRecovery : MonoBehaviour
                     SceneManager.LoadScene("Controller03_PickingScreen");
                     break;
                 case 6:
+                    SceneManager.LoadScene("Controller00_JoinGame");
                     break;
                 case 7:
+                    SceneManager.LoadScene("Controller00_JoinGame");
                     break;
                 case 8:
+                    SceneManager.LoadScene("Controller00_JoinGame");
                     break;
                 case 9:
+                    SceneManager.LoadScene("Controller00_JoinGame");
                     break;
             }
         }
@@ -43,7 +50,7 @@ public class AccidentalDisconnectRecovery : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Home))
         {
             Debug.Log("SIMULATING PAUSED GAME");
-            OnApplicationFocus(false);
+            OnApplicationPause(false);
         }
     }
 }
