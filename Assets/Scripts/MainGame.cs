@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -99,8 +100,6 @@ public class MainGame : MonoBehaviour
             newPlayerScore.transform.SetParent(playerPanelParent.transform, false);
             newPlayerScore.transform.GetChild(1).GetComponent<Text>().text = Global.allPlayers[i].NickName;
 
-            newPlayerScore.transform.GetChild(3).GetComponent<Text>().text = "Score: " + Global.allPlayers[i].CustomProperties["PrevScore"].ToString();
-
             Transform playerScoringParent = newPlayerScore.transform.GetChild(2).GetChild(0).transform;
             rightWrongAnimators = new List<Animator>();
             for (int j = 0; j < Global.allPlayers.Count; j++)
@@ -140,18 +139,13 @@ public class MainGame : MonoBehaviour
                 yield return new WaitForSeconds(0.5f);
             }
 
-            Debug.Log(Global.allPlayers[i].NickName + ": " + Global.allPlayers[i].CustomProperties["PrevScore"] + " " + Global.allPlayers[i].CustomProperties["Score"]);
-
             yield return new WaitForSeconds(1);
-            newPlayerScore.transform.GetChild(3).GetComponent<Text>().text = "Score: " + Global.allPlayers[i].CustomProperties["Score"];
             oldPlayerScore = newPlayerScore;
         }
 
         yield return new WaitForSeconds(1);
 
-        StartNextRound();
-
-        yield return new WaitForSeconds(1);
+        StartCoroutine("ShowAllPlayersScores");
     }
 
     private IEnumerator ShowPlayerScoresMostLikely()
@@ -174,16 +168,66 @@ public class MainGame : MonoBehaviour
 
         yield return new WaitForSeconds(10);
 
+        StartCoroutine("ShowAllPlayersScores");
+    }
+
+    private IEnumerator ShowAllPlayersScores()
+    {
+        List<ScorePlayers.Pair<string, int>> playersInScoreOrder = new List<ScorePlayers.Pair<string, int>>();
+
+        for (int j = 0; j < Global.allPlayers.Count; j++)
+        {
+            playersInScoreOrder.Add(new ScorePlayers.Pair<string, int>(Global.allPlayers[j].NickName, int.Parse(Global.allPlayers[j].CustomProperties["Score"].ToString())));
+        }
+        playersInScoreOrder = playersInScoreOrder.OrderByDescending(x => x.Score).ToList();
+
+        GameObject newPlayerScore = Instantiate(playerMostLikelyPanel);
+        newPlayerScore.transform.GetChild(1).GetComponent<Text>().text = "Total Scores";
+        newPlayerScore.transform.SetParent(playerPanelParent.transform, false);
+
+        Transform playerScoringParent = newPlayerScore.transform.GetChild(2).GetChild(0).transform;
+        for (int j = 0; j < Global.allPlayers.Count; j++)
+        {
+            GameObject newPlayerScoreBlock = Instantiate(playerScoringBlock, playerScoringParent);
+            newPlayerScoreBlock.transform.GetChild(1).GetComponent<Text>().text = playersInScoreOrder[j].Name;
+            newPlayerScoreBlock.transform.GetChild(2).GetComponent<Image>().sprite = this.GetComponent<PossibleCharacterInfo>().characterPictures[0];
+            newPlayerScoreBlock.transform.GetChild(4).GetComponent<Text>().text = playersInScoreOrder[j].Score.ToString();
+        }
+
+        yield return new WaitForSeconds(2);
+
+        newPlayerScore.GetComponent<Animator>().SetBool("PlayAnimIn", true);
+
+        yield return new WaitForSeconds(10);
+
         StartNextRound();
     }
 
     public void StartNextRound()
     {
         Global.currentRoundNumber++;
+
+        if (Global.currentRoundNumber > 3)
+        {
+            Global.isRankingRound = false;
+            Global.currentRoundNumber = 0;
+        }
+
         nextRound.NextRound();
+
+        this.GetComponent<ScorePlayers>().playerMostLikelyVotes = null;
 
         currentModePanel.SetActive(true);
         showingScorePanel.SetActive(false);
+
+        if (Global.isRankingRound)
+        {
+            currentModePanel.transform.GetChild(1).GetComponent<Text>().text = "RANKING";
+        }
+        else
+        {
+            currentModePanel.transform.GetChild(1).GetComponent<Text>().text = "PICKING";
+        }
 
         foreach (Transform child in playerPanelParent.transform)
         {

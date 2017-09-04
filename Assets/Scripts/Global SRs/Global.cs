@@ -13,5 +13,5 @@ public class Global : MonoBehaviour
     public static List<string>[] playerMostLikely = new List<string>[MaxPlayers];
 
     public static int currentRoundNumber = 0;
-    public static bool isRankingRound = false;
+    public static bool isRankingRound = true;
 }
