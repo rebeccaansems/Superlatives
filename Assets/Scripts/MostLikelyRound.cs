@@ -5,12 +5,13 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class RankingRound : MonoBehaviour
+public class MostLikelyRound : MonoBehaviour
 {
     public TMP_Text currentQuestion;
     public GameObject nameBlockHeader, nameBlock;
-    public SubmitRankingNames submitRanking;
-    public UIElementDragger uiElement;
+    public SubmitMostLikelyNames submitMostLikely;
+
+    private GameObject selectedObject = null;
 
     private void Start()
     {
@@ -26,16 +27,34 @@ public class RankingRound : MonoBehaviour
                     GameObject newNameBlock = Instantiate(nameBlock, nameBlockHeader.transform);
                     newNameBlock.name = PhotonNetwork.playerList[i].NickName;
 
+                    newNameBlock.GetComponent<Button>().onClick.AddListener(delegate () { SelectElement(newNameBlock); });
                     newNameBlock.transform.GetChild(0).GetComponent<TMP_Text>().text = PhotonNetwork.playerList[i].NickName;
                     newNameBlock.transform.GetChild(1).GetComponent<Image>().sprite = GetComponent<PossibleCharacterInfo>().characterPictures[0];
+
+                    if (playerNum == 0)
+                    {
+                        newNameBlock.transform.GetChild(2).gameObject.SetActive(true);
+                        selectedObject = newNameBlock;
+                    }
                 }
             }
         }
     }
 
-    public void SubmitRankingOrder()
+    private void SelectElement(GameObject self)
     {
-        submitRanking.SendRankingNames(uiElement.GetPlayerListOrder());
+        if (self != selectedObject)
+        {
+            selectedObject.transform.GetChild(2).gameObject.SetActive(false);
+            
+            self.transform.GetChild(2).gameObject.SetActive(true);
+            selectedObject = self;
+        }
+    }
+
+    public void SubmitMostLikely()
+    {
+        submitMostLikely.SendMostLikelyName(selectedObject.transform.GetChild(0).GetComponent<TMP_Text>().text);
         SceneManager.LoadScene("Controller04_WaitingScreen");
     }
 }

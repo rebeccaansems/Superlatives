@@ -8,9 +8,10 @@ public class SubmitRankingNames : Photon.MonoBehaviour
 {
     public MainGame server;
 
-    public void SendRankingNames(string[] data)
+    public void SendRankingNames(List<string> data)
     {
-        this.GetComponent<PhotonView>().RPC("RankingNamesRecieved", PhotonTargets.MasterClient, data);
+        data.Add(PhotonNetwork.player.CustomProperties["JoinNumber"].ToString());
+        this.GetComponent<PhotonView>().RPC("RankingNamesRecieved", PhotonTargets.MasterClient, data.ToArray());
     }
 
     [PunRPC]
@@ -24,7 +25,7 @@ public class SubmitRankingNames : Photon.MonoBehaviour
 
             Debug.Log("[PHOTON] Recieved ranking names from player #" + playerNum);
 
-            server.ScorePlayers(playerNum, data);
+            server.ScorePlayersRanking(playerNum, data);
         }
     }
 }

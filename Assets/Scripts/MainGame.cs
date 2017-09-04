@@ -15,7 +15,7 @@ public class MainGame : MonoBehaviour
     private int playersScored = 0;
     private List<Animator> rightWrongAnimators;
 
-    public void ScorePlayers(int playerNum, string[] playerRankings)
+    public void ScorePlayersRanking(int playerNum, string[] playerRankings)
     {
         int playerScore = this.GetComponent<ScorePlayers>().ScorePlayerRanking(Global.currentRoundNumber, playerRankings);
 
@@ -35,6 +35,11 @@ public class MainGame : MonoBehaviour
         {
             Global.playerRankGuesses[playerNum].Add(playerRankings[i]);
         }
+    }
+
+    public void ScorePlayersMostLikely(int submittedPlayerNum, string chosenPlayerName)
+    {
+
     }
 
     private void Update()

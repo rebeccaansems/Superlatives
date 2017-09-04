@@ -21,7 +21,7 @@ public class GameStart : Photon.MonoBehaviour
         }
         else
         {
-            SceneManager.LoadScene("Controller02_RankingRound");
+            SceneManager.LoadScene("Controller03_PickingScreen");
         }
     }
 }

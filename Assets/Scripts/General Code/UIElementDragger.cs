@@ -118,7 +118,6 @@ public class UIElementDragger : MonoBehaviour
     public List<string> GetPlayerListOrder()
     {
         playerOrder.Reverse();
-        playerOrder.Add(PhotonNetwork.player.CustomProperties["JoinNumber"].ToString());
         return playerOrder;
     }
 }

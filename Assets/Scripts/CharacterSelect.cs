@@ -73,7 +73,7 @@ public class CharacterSelect : MonoBehaviour
     public void StartGame()
     {
         gameStart.SendGameHasStarted();
-        SceneManager.LoadScene("Controller02_RankingRound");
+        SceneManager.LoadScene("Controller03_PickingScreen");
     }
 
     private void Update()

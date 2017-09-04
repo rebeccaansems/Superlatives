@@ -20,7 +20,7 @@ public class StartNextRound : Photon.MonoBehaviour
         {
             Debug.Log("[PHOTON] Started next round: " + roundNumber);
             Global.currentRoundNumber = roundNumber;
-            SceneManager.LoadScene("Controller02_RankingRound");
+            SceneManager.LoadScene("Controller03_PickingScreen");
         }
     }
 }
