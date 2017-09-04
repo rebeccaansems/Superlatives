@@ -15,7 +15,7 @@ public class MostLikelyRound : MonoBehaviour
 
     private void Start()
     {
-        currentQuestion.text = Global.rankingRoundQuestions[Global.currentRoundNumber];
+        currentQuestion.text = Global.mostLikelyQuestions[Global.currentRoundNumber];
 
         for (int i = 0; i < PhotonNetwork.room.PlayerCount; i++)
         {

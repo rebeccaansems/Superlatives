@@ -8,7 +8,10 @@ public class Global : MonoBehaviour
 
     public static List<PhotonPlayer> allPlayers = new List<PhotonPlayer>();
     public static List<string> rankingRoundQuestions;
+    public static List<string> mostLikelyQuestions;
     public static List<string>[] playerRankGuesses = new List<string>[MaxPlayers];
+    public static List<string>[] playerMostLikely = new List<string>[MaxPlayers];
 
     public static int currentRoundNumber = 0;
+    public static bool isRankingRound = false;
 }

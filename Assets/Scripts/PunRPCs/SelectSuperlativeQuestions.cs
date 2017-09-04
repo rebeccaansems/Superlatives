@@ -24,6 +24,12 @@ public class SelectSuperlativeQuestions : Photon.MonoBehaviour
                 Global.rankingRoundQuestions.Add(data[1]);
                 Global.rankingRoundQuestions.Add(data[2]);
                 Global.rankingRoundQuestions.Add(data[3]);
+
+                Global.mostLikelyQuestions = new List<string>();
+                Global.mostLikelyQuestions.Add(data[4]);
+                Global.mostLikelyQuestions.Add(data[5]);
+                Global.mostLikelyQuestions.Add(data[6]);
+                Global.mostLikelyQuestions.Add(data[7]);
             }
         }
     }

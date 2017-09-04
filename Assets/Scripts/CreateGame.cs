@@ -113,9 +113,28 @@ public class CreateGame : MonoBehaviour
             Global.rankingRoundQuestions.Add(SQL.rankingQuestions[questionLocations[1]].superlativeQuestion);
             Global.rankingRoundQuestions.Add(SQL.rankingQuestions[questionLocations[2]].superlativeQuestion);
             Global.rankingRoundQuestions.Add(SQL.rankingQuestions[questionLocations[3]].superlativeQuestion);
+
+
+            questionLocations = new List<int>();
+            currentNum = -1;
+            while (questionLocations.Count < 4)
+            {
+                currentNum = Random.Range(0, SQL.rankingQuestions.Count);
+                if (!questionLocations.Contains(currentNum))
+                {
+                    questionLocations.Add(currentNum);
+                }
+            }
+
+            Global.mostLikelyQuestions = new List<string>();
+            Global.mostLikelyQuestions.Add(SQL.mostLikelyQuestions[questionLocations[0]].superlativeQuestion);
+            Global.mostLikelyQuestions.Add(SQL.mostLikelyQuestions[questionLocations[1]].superlativeQuestion);
+            Global.mostLikelyQuestions.Add(SQL.mostLikelyQuestions[questionLocations[2]].superlativeQuestion);
+            Global.mostLikelyQuestions.Add(SQL.mostLikelyQuestions[questionLocations[3]].superlativeQuestion);
         }
 
-        selectSuperlativeQuestions.SendSuperlativeQuestion(new string[4]
-            { Global.rankingRoundQuestions[0], Global.rankingRoundQuestions[1], Global.rankingRoundQuestions[2], Global.rankingRoundQuestions[3] });
+        selectSuperlativeQuestions.SendSuperlativeQuestion(new string[8]
+            { Global.rankingRoundQuestions[0], Global.rankingRoundQuestions[1], Global.rankingRoundQuestions[2], Global.rankingRoundQuestions[3],
+            Global.mostLikelyQuestions[0],Global.mostLikelyQuestions[1],Global.mostLikelyQuestions[2],Global.mostLikelyQuestions[3] });
     }
 }

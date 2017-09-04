@@ -8,13 +8,15 @@ public class ScorePlayers : MonoBehaviour
     public class Pair<T1, T2>
     {
         public T1 Name { get; private set; }
-        public T2 Score { get; private set; }
+        public T2 Score { get; set; }
         internal Pair(T1 first, T2 second)
         {
             Name = first;
             Score = second;
         }
     }
+
+    public List<Pair<string, int>> playerMostLikelyVotes;
 
     private List<Pair<string, int>> correctPlayerRankingOrder;
 
@@ -46,6 +48,44 @@ public class ScorePlayers : MonoBehaviour
         }
 
         return score;
+    }
+
+    public void AddPlayersMostLikelys(string chosenPlayerName)
+    {
+        if (playerMostLikelyVotes == null)
+        {
+            SetupMostLikelyLists();
+        }
+
+        for (int i = 0; i < Global.allPlayers.Count; i++)
+        {
+            if (playerMostLikelyVotes[i].Name.Equals(chosenPlayerName))
+            {
+                playerMostLikelyVotes[i].Score += 1;
+            }
+        }
+        playerMostLikelyVotes = playerMostLikelyVotes.OrderByDescending(x => x.Score).ToList();
+    }
+
+    public int ScorePlayerMostLikely(string chosenPlayerName)
+    {
+        for (int i = 0; i < Global.allPlayers.Count; i++)
+        {
+            if (playerMostLikelyVotes[i].Name.Equals(chosenPlayerName))
+            {
+                return playerMostLikelyVotes[i].Score;
+            }
+        }
+        return 0;
+    }
+
+    private void SetupMostLikelyLists()
+    {
+        playerMostLikelyVotes = new List<Pair<string, int>>();
+        for (int i = 0; i < Global.allPlayers.Count; i++)
+        {
+            playerMostLikelyVotes.Add(new Pair<string, int>(Global.allPlayers[i].NickName, 0));
+        }
     }
 
     public bool DidPlayerScore(int currentRankingOrder, string playerName)
